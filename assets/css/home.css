@@ -1,0 +1,14 @@
+table,
+        td,
+        th {
+            border: 1px solid;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+       tr:hover{
+            background-color: rgb(183, 203, 249);
+            font-weight: 600;
+        }

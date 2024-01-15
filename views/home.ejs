@@ -1,11 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/css/home.css">
 </head>
+
 <body>
     <h1>TODO App</h1>
+    <hr>
+    <form action="/add-in-list" method="POST">
+        <label for="descr">
+            Description:
+            <input type="text" name="descr" placeholder="What to you need to do ?" required>
+
+        </label>
+        <hr>
+        <div>
+            <label for="category">
+                Category:
+                <select name="category" required>
+                    <option value="">Choose any one</option>
+                    <option value="school">School</option>
+                    <option value="work">Work</option>
+                    <option value="others">Others</option>
+                </select>
+            </label>
+            <label for="date">
+                <input type="date" name="date" required>
+            </label>
+        </div>
+        <hr>
+        <button type="submit">Add Task</button>
+        <button type="button" onclick="deleteTasks()">
+            Delete Tasks
+        </button>
+    </form>
+    <br><br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Ctaegory</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% todo_list.forEach(list=>{%>
+                <tr>
+                    <td>
+                        <%= list.descr %>
+                    </td>
+                    <td>
+                        <%= list.category %>
+                    </td>
+                    <td>
+                        <%= list.date.toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: '2-digit',
+                            year: 'numeric'
+                        }) %>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="taskToDelete" value="<%= list.id %>">
+
+                            
+                        </label>
+                    </td>
+                </tr>
+
+                <%})%>
+        </tbody>
+
+    </table>
+
+    <script src="/js/home.js" defer></script>
+
 </body>
+
 </html>
